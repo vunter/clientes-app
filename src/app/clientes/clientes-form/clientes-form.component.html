@@ -1,0 +1,74 @@
+<h1 class="text-center mt-4">Clientes</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active"><h4>{{ cliente.id ? 'Editar Cliente' : 'Cadastrar Cliente' }}</h4></li>
+</ol>
+<div class="container">
+  <form #clienteForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-danger" role="alert" *ngFor="let item of errors">
+          {{ item }}
+        </div>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="cliente.id">
+      <div class="col-md-6">
+        <div class="form-group">
+          <span>
+            <label>ID:</label>
+            <input type="text" [ngModel]="cliente.id" class="form-control" name="id" disabled />
+          </span>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Data de Cadastro:</label>
+          <input type="text" [ngModel]="cliente.dataCadastro" class="form-control" name="dataCadastro" disabled />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Nome: *</label>
+          <input type="text" [(ngModel)]="cliente.nome" class="form-control" name="nome" />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label>Sobrenome: *</label>
+        <input type="text" [(ngModel)]="cliente.lastName" class="form-control" name="lastName" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>CPF: *</label>
+          <input type="text" class="form-control" name="cpf" [(ngModel)]="cliente.cpf" />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Data de Nascimento:</label>
+          <input type="date" [(ngModel)]="this.cliente.dataNascimento" class="form-control" name="dataNascimento" />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <button type="button" class="btn btn-danger float-right ml-2" (click)="redirectListagem()"  *ngIf="!success">
+          <i class="fa fa-arrow-alt-circle-left"></i> Voltar
+        </button>
+        <button type="submit" class="btn btn-success float-right" *ngIf="!success && !cliente.id" >
+          <i class="fa fa-save"></i> Salvar
+        </button>
+        <button type="submit" class="btn btn-primary float-right" *ngIf="!success && cliente.id" >
+          <i class="fa fa-sync-alt"></i> Atualizar
+        </button>
+        <button type="button" class="btn btn-success float-right" *ngIf="success" (click)="redirectListagem()">
+          <i class="fa fa-eye"></i> Visualizar na Lista
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

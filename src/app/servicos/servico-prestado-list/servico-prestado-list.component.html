@@ -1,0 +1,177 @@
+<h1 class="text-center mt-4">Serviço Prestado</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active float-center">
+    <h4>Consultar</h4>
+  </li>
+</ol>
+
+<div class="container">
+  <form #listServicoForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-md-6 form-group">
+        <label for="dtInicio">Data inicio: </label>
+        <input class="form-control" [(ngModel)]="filtroPesquisa.dtInicio" id="dtInicio" name="dtInicio" type="date" />
+      </div>
+      <div class="col-md-6 form-group">
+        <label for="dtFim">Data Fim: </label>
+        <input class="form-control" id="dtFim" [(ngModel)]="filtroPesquisa.dtFim" name="dtFim" type="date"
+          min="{{ filtroPesquisa.dtInicio | date: 'yyyy-MM-dd' }}" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 form-group">
+        <label for="nome">Nome Cliente: </label>
+        <input class="form-control" type="text" name="nome" id="nome" [(ngModel)]="filtroPesquisa.nomeCliente" />
+      </div>
+      <div class="col-md-6 form-group">
+        <label for="cpf">CPF Cliente: </label>
+        <input class="form-control" type="text" name="cpf" id="cpf" [(ngModel)]="filtroPesquisa.cpfCliente" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 form-group">
+        <label for="descricao">Descrição: </label>
+        <input class="form-control" type="text" name="descricao" id="descricao"
+          [(ngModel)]="filtroPesquisa.descricao" />
+      </div>
+      <div class="col-md-6 form-group">
+        <label for="valor">Valor: </label>
+        <input class="form-control" type="text" name="valor" id="valor" [(ngModel)]="filtroPesquisa.valor" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <button type="submit" class="btn btn-primary float-right ml-2">
+          <i class="fa fa-search"></i> Buscar
+        </button>
+        <button type="button" class="btn btn-warning float-right" (click)="clearInput()">
+          <i class="fa fa-eraser"></i> Limpar Campos
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-condensed table-hover" style="margin-top: 0.625rem;" *ngIf="servicosPrestado.length > 0">
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Cliente</th>
+            <th>Descrição</th>
+            <th>Valor</th>
+            <th>&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of servicosPrestado">
+            <td>{{ item.data | date: "dd/MM/yyyy" }}</td>
+            <td>{{ item.cliente.nome + " " + item.cliente.lastName }}</td>
+            <td style="
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+                max-width: 31.25rem;
+              ">
+              {{ item.descricao }}
+            </td>
+            <td>{{ "R$ " + item.valor }}</td>
+            <td>
+              <button type="button" title="Visualizar Detalhes" data-toggle="modal" data-target="#modalView"
+                (click)="visualizarDetalhes(item)">
+                <i class="fa fa-eye"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="modalView" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header justify-content-center">
+          <h2>Detalhes do Serviço</h2>
+        </div>
+        <div class="modal-body justify-content-center">
+          <h3 class="text-center">Informações do Cliente</h3>
+          <div class="border text-center">
+            <div class="form-group row" style="padding-top: 1rem;">
+              <label class="col-2 col-form-label" for="id">ID Cliente:</label>
+              <div class="col-2">
+                <input class="form-control" type="text" name="id" id="id" disabled
+                  [value]="servicoPrestado.cliente.id" />
+              </div>
+              <label class="col-2 col-form-label" for="dtCadastro">Data Cadastro Cliente:
+              </label>
+              <div class="col-5">
+                <input class="form-control" type="text" name="dtCadastro" id="dtCadastro" disabled
+                  [value]="servicoPrestado.cliente.dataCadastro" />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-2 col-form-label" for="nome">Nome Cliente:</label>
+              <div class="col-9">
+                <input class="form-control" type="text" name="nome" id="nome" disabled [value]="
+                    servicoPrestado.cliente.nome +
+                    '' +
+                    servicoPrestado.cliente.lastName
+                  " />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-2 col-form-label" for="cpf">CPF Cliente:</label>
+              <div class="col-2">
+                <input class="form-control" type="text" name="cpf" id="cpf" disabled
+                  [value]="servicoPrestado.cliente.cpf" />
+              </div>
+              <label class="col-3 col-form-label" for="dataNascimento" style="left: -2.3125rem;">Data Nascimento Cliente:</label>
+              <div class="col" style="left: -5.9375rem;">
+                <input class="form-control" type="text" name="dataNascimento" id="dataNascimento" disabled
+                  [value]="servicoPrestado.cliente.dataNascimento | date: 'dd/MM/yyyy' " />
+              </div>
+            </div>
+          </div>
+          <h3 class="text-center">Informações do Serviço</h3>
+          <div class="border text-center">
+            <div class="form-group row" style="padding-top: 1rem;">
+              <label class="col-2 col-form-label" for="id">ID Serviço:</label>
+              <div class="col-2">
+                <input class="form-control" type="text" name="id" id="id" disabled
+                  [value]="servicoPrestado.id" />
+              </div>
+              <label class="col-2 col-form-label" for="dtCadastro">Data Serviço:
+              </label>
+              <div class="col-5">
+                <input class="form-control" type="text" name="dtCadastro" id="dtCadastro" disabled
+                  [value]="servicoPrestado.data | date: 'dd/MM/yyyy' " />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-2 col-form-label" for="nome">Descrição:</label>
+              <div class="col-9">
+                <textarea class="form-control" type="text" name="nome" id="nome" disabled [value]="servicoPrestado.descricao "></textarea>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-2 col-form-label" for="valor">Valor:</label>
+              <div class="col-2">
+                <input class="form-control" type="text" name="valor" id="valor" disabled
+                  [value]="'R$ ' + servicoPrestado.valor" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <div class="">
+            <button type="button" class="btn btn-primary" title="Voltar" data-dismiss="modal">
+              <i class="fa fa-arrow-alt-circle-left"></i> Voltar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

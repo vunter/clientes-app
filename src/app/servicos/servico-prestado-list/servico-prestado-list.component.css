@@ -1,0 +1,17 @@
+.breadcrumb {
+  display: block;
+  text-align: center;
+  margin-right: 35px;
+
+}
+.breadcrumb-item {
+  text-align: center;
+  display: inline;
+}
+
+textarea {
+  resize: vertical;
+  max-height: 200px;
+  min-height: 50px;
+  height: 100px;
+}

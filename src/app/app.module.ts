@@ -1,3 +1,4 @@
+import { AuthService } from './services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { ServicoPrestadoService } from './services/servicos-prestados/servico-prestado.service';
 
@@ -16,6 +17,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
+import { AdminModule } from './admin/admin.module';
 
 
 @NgModule({
@@ -34,11 +36,13 @@ import { MainComponent } from './main/main.component';
     ServicoPrestadoModule,
     BrowserAnimationsModule,
     FormsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    AdminModule
   ],
   providers: [
     ClientesService,
-    ServicoPrestadoService
+    ServicoPrestadoService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

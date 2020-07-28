@@ -1,0 +1,60 @@
+<h1 class="text-center mt-4">Painel do Administrador</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">
+    <h4>Menu do Administrador</h4>
+  </li>
+</ol>
+<div class="card bg-primary p-2 align-items-center d-flex justify-content-center" style="width: 18rem; height: 10rem;">
+  <a class="card-block stretched-link text-decoration-none" href data-toggle="modal" data-target="#modalNewUser">
+    <h4 class="card-title" style="color: white;">New User</h4>
+  </a>
+</div>
+
+
+<div id="modalNewUser" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form #userForm="ngForm" (ngSubmit)="newUser()">
+        <div class="modal-header justify-content-center">
+          <h2>Novo Usuário</h2>
+        </div>
+        <div class="modal-body justify-content-center">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="form-label"><b>Nome: </b></label>
+                <input type="text" [(ngModel)]="user.user" class="form-control" name="username" />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label><b>Password: </b></label>
+                <input type="password" [(ngModel)]="user.password" class="form-control" name="password" />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label><b>Email: </b></label>
+                <input type="email" [(ngModel)]="user.email" class="form-control" name="email" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="">
+            <button type="button" class="btn btn-danger" title="Cancelar" data-dismiss="modal">
+              <i class="fa fa-ban"></i> Cancelar
+            </button>
+            <button type="submit" class="btn btn-success ml-2">
+              <i class="fa fa-save"></i> Salvar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

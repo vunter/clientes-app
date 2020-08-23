@@ -42,7 +42,6 @@ export class ServicoPrestadoFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.servico)
     this.servicoService
     .salvar(this.servico)
     .subscribe(
@@ -58,7 +57,6 @@ export class ServicoPrestadoFormComponent implements OnInit {
 
      }
     );
-      console.log(this.servico)
   }
 
 }

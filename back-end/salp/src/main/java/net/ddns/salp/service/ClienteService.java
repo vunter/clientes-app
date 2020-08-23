@@ -12,6 +12,7 @@ import java.util.List;
 @Service
 public class ClienteService {
 
+    public static final String CLIENTE_NAO_ENCONTRADO = "Cliente não existe no banco de dados";
     private final ClienteRepository repository;
 
     @Autowired
@@ -32,14 +33,14 @@ public class ClienteService {
                     cliente.setId(c.getId());
                     return repository.save(cliente);
                 })
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não existe no banco de dados"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, CLIENTE_NAO_ENCONTRADO));
     }
 
     public Cliente buscaCliente(Integer id) {
 
         return repository
                 .findById(id.longValue())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não existe no banco de dados"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, CLIENTE_NAO_ENCONTRADO));
     }
 
     public void deletarCliente(Long id) {
@@ -49,7 +50,7 @@ public class ClienteService {
                     repository.delete(c);
                     return c;
                 })
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não existe no banco de dados"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, CLIENTE_NAO_ENCONTRADO));
     }
 
     public List<Cliente> listaClientes() {

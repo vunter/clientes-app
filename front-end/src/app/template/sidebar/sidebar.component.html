@@ -16,6 +16,7 @@
         <span class="user-name">Leonardo </span>
         <strong>Eifert Catanante</strong>
         <span class="user-role">Administrador</span>
+        <span class="user-role">{{ user }}</span>
         <span class="user-status">
           <i class="fa fa-circle" style="color: green;"></i>
           <span>Online</span>
@@ -59,96 +60,8 @@
               <li>
                 <a routerLink='/servicos/form'>Cadastrar Serviço</a>
               </li>
-              <li>
-                <a>Métodos de Pagamento</a>
-              </li>
             </ul>
           </div>
-        </li>
-        <li class="sidebar-dropdown">
-          <a>
-            <i class="far fa-gem"></i>
-            <span>Componentes</span>
-          </a>
-          <div class="sidebar-submenu">
-            <ul>
-              <li>
-                <a>Geral</a>
-              </li>
-              <li>
-                <a>Painéis</a>
-              </li>
-              <li>
-                <a>Tabelas</a>
-              </li>
-              <li>
-                <a>Ícones</a>
-              </li>
-              <li>
-                <a>Formulários</a>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li class="sidebar-dropdown">
-          <a>
-            <i class="fa fa-chart-line"></i>
-            <span>Gráficos</span>
-          </a>
-          <div class="sidebar-submenu">
-            <ul>
-              <li>
-                <a>Gráfico de Pizza</a>
-              </li>
-              <li>
-                <a>Gráfico de linhas</a>
-              </li>
-              <li>
-                <a>Gráfico de Barras</a>
-              </li>
-              <li>
-                <a>Histograma</a>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li class="sidebar-dropdown">
-          <a>
-            <i class="fa fa-globe"></i>
-            <span>Mapas</span>
-          </a>
-          <div class="sidebar-submenu">
-            <ul>
-              <li>
-                <a>Google maps</a>
-              </li>
-              <li>
-                <a>Open street map</a>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li class="header-menu">
-          <span>Extra</span>
-        </li>
-        <li>
-          <a>
-            <i class="fa fa-book"></i>
-            <span>Documentação</span>
-            <span class="badge badge-pill badge-primary">Beta</span>
-          </a>
-        </li>
-        <li>
-          <a>
-            <i class="fa fa-calendar"></i>
-            <span>Calendário</span>
-          </a>
-        </li>
-        <li>
-          <a>
-            <i class="fa fa-folder"></i>
-            <span>Exemplos</span>
-          </a>
         </li>
       </ul>
     </div>
@@ -156,19 +69,11 @@
   </div>
   <!-- sidebar-content  -->
   <div class="sidebar-footer">
-    <a>
-      <i class="fa fa-bell"></i>
-      <span class="badge badge-pill badge-warning notification">3</span>
-    </a>
-    <a>
-      <i class="fa fa-envelope"></i>
-      <span class="badge badge-pill badge-success notification">7</span>
-    </a>
-    <a>
+    <a (click)="admin()">
       <i class="fa fa-cog"></i>
       <span class="badge-sonar"></span>
     </a>
-    <a [routerLink]="['/logout']" title="Sair">
+    <a (click)="logout()" title="Sair">
       <i class="fa fa-power-off"></i>
     </a>
   </div>

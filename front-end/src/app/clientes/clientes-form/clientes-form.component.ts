@@ -50,7 +50,6 @@ export class ClientesFormComponent implements OnInit {
     if (!this.cliente.id) {
       this.service.salvar(this.cliente).subscribe(
         (response) => {
-          console.log(response);
           this.success = true;
           this.notification.showSuccessTitle('Cliente salvo com sucesso!', 'Sucesso', 5000);
           this.cliente = response;

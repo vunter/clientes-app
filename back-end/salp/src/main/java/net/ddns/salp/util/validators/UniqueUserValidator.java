@@ -13,11 +13,6 @@ public class UniqueUserValidator implements ConstraintValidator<UniqueUser, Stri
     private  UsuarioService usuarioService;
 
     @Override
-    public void initialize(UniqueUser constraintAnnotation) {
-
-    }
-
-    @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
 
         return !usuarioService.isUserPresent(s);

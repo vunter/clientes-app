@@ -1,7 +1,10 @@
 package net.ddns.salp.model.entity;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
 import net.ddns.salp.model.annotations.UniqueEmail;
 import net.ddns.salp.model.annotations.UniqueUser;
 
@@ -11,6 +14,8 @@ import javax.validation.constraints.NotEmpty;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public @Data class Usuario {
 
     @Id

@@ -10,7 +10,6 @@ import { Observable } from 'rxjs';
 export class ClientesService {
 
   apiURL: string = environment.apiURL + '/cliente';
-
   constructor(private api : HttpClient) {
 
   }
@@ -30,6 +29,7 @@ export class ClientesService {
   }
 
   listClientes(): Observable<Cliente[]> {
+
     return this.api.get<Cliente[]>(`${this.apiURL}/clientes`);
   }
 

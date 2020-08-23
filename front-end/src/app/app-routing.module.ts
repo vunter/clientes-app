@@ -1,3 +1,4 @@
+import { AuthGuard } from './auth.guard';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
@@ -10,7 +11,7 @@ const routes: Routes = [
   { path: '', component: MainComponent, children: [
     { path: '', component: HomeComponent },
     { path: 'home', redirectTo: '' },
-  ]}
+  ], canActivate: [AuthGuard]}
 ];
 
 @NgModule({

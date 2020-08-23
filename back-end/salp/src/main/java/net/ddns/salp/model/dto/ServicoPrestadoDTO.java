@@ -8,7 +8,6 @@ import net.ddns.salp.model.entity.Cliente;
 import net.ddns.salp.model.entity.ServicoPrestado;
 import net.ddns.salp.util.BigDecimalConverter;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;

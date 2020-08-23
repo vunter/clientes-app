@@ -27,7 +27,6 @@ export class ClientesListComponent implements OnInit {
     .listClientes().subscribe( response => {
       this.clientes = response;
     }, errorResponse => {
-      console.log(errorResponse);
       this.errors = errorResponse.error.erros;
     });
   }

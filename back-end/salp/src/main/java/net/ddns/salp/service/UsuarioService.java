@@ -1,31 +1,27 @@
 package net.ddns.salp.service;
 
-import com.sun.mail.iap.Response;
+import lombok.RequiredArgsConstructor;
 import net.ddns.salp.model.entity.Usuario;
 import net.ddns.salp.model.repository.UsuarioRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.persistence.EntityManager;
+import java.security.SecureRandom;
 
 @Service
+@RequiredArgsConstructor
 public class UsuarioService implements UserDetailsService {
 
     private final UsuarioRepository repository;
-
     private final EntityManager em;
-
-    @Autowired
-    public UsuarioService(EntityManager em, UsuarioRepository repository) {
-        this.em = em;
-        this.repository = repository;
-    }
 
     public Usuario salvar(Usuario usuario) {
 
@@ -34,7 +30,7 @@ public class UsuarioService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String s) {
 
         Usuario user = repository.findByUser(s).orElseThrow(() -> new UsernameNotFoundException("Usuário e/ou senha incorretos!"));
 

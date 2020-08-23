@@ -1,3 +1,4 @@
+import { AuthGuard } from './../auth.guard';
 import { MainComponent } from './../main/main.component';
 import { ServicoPrestadoListComponent } from './servico-prestado-list/servico-prestado-list.component';
 import { ServicoPrestadoFormComponent } from './servico-prestado-form/servico-prestado-form.component';
@@ -11,7 +12,7 @@ const routes: Routes = [
       { path: 'form', component: ServicoPrestadoFormComponent },
       { path: 'list', component: ServicoPrestadoListComponent },
       { path: '', redirectTo: '/servicos/list', pathMatch: 'full'}
-    ]
+    ], canActivate: [AuthGuard]
   }
 
 ];

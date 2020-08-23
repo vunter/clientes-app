@@ -1,16 +1,17 @@
 package net.ddns.salp.util;
 
-import org.springframework.stereotype.Component;
+import lombok.experimental.UtilityClass;
 
 import java.math.BigDecimal;
 
-@Component
+@UtilityClass
 public class BigDecimalConverter {
 
-    public static BigDecimal converter(String value) {
+    public BigDecimal converter(String value) {
         if (value.contains(",")) {
             value = value.replace(".", "").replace(",", ".");
         }
         return new BigDecimal(value);
     }
+
 }

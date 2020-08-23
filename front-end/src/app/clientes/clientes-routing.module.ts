@@ -1,3 +1,4 @@
+import { AuthGuard } from './../auth.guard';
 import { MainComponent } from './../main/main.component';
 import { ClientesListComponent } from './clientes-list/clientes-list.component';
 import { ClientesFormComponent } from './clientes-form/clientes-form.component';
@@ -11,7 +12,7 @@ const routes: Routes = [
     { path: 'cadastro/:id', component: ClientesFormComponent },
     { path: 'listar', component: ClientesListComponent},
     { path: '', redirectTo: '/clientes/listar', pathMatch: 'full' }
-  ]}
+  ], canActivate: [AuthGuard]}
 
 ];
 

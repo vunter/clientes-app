@@ -1,6 +1,5 @@
 package net.ddns.salp.controller;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import net.ddns.salp.model.entity.Cliente;
 import net.ddns.salp.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;

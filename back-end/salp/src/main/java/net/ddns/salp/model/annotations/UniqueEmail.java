@@ -1,7 +1,6 @@
 package net.ddns.salp.model.annotations;
 
 import net.ddns.salp.util.validators.UniqueEmailValidator;
-import net.ddns.salp.util.validators.UniqueUserValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

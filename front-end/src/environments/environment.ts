@@ -4,7 +4,11 @@
 
 export const environment = {
   production: false,
-  apiURL: 'http://localhost:8080/api'
+  apiURL: 'http://localhost:8080/api',
+  clientId: 'clientes-app',
+  clientSecret: '@9012',
+  tokenURL: 'http://localhost:8080/oauth/token'
+
 };
 
 /*

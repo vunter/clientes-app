@@ -1,5 +1,6 @@
 package net.ddns.salp.configuracao;
 
+import lombok.RequiredArgsConstructor;
 import net.ddns.salp.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -14,14 +15,10 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UsuarioService usuarioService;
-
-    @Autowired
-    public SecurityConfig(UsuarioService usuarioService) {
-        this.usuarioService = usuarioService;
-    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

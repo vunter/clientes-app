@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.persistence.EntityManager;
-import java.security.SecureRandom;
 
 @Service
 @RequiredArgsConstructor

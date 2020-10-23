@@ -1,5 +1,6 @@
 package net.ddns.salp;
 
+import lombok.RequiredArgsConstructor;
 import net.ddns.salp.model.entity.Cliente;
 import net.ddns.salp.model.entity.Usuario;
 import net.ddns.salp.model.repository.ClienteRepository;
@@ -9,15 +10,17 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
+@RequiredArgsConstructor
 public class SalpApplication {
+
+	private final PasswordEncoder passwordEncoder;
 
 	@Bean
 	public CommandLineRunner run(@Autowired ClienteRepository repository, @Autowired UsuarioService usuarioRepository) {
@@ -27,8 +30,8 @@ public class SalpApplication {
 			c.add(Cliente.builder().cpf("06032112160").lastName("Eifert Catanante").nome("Henrique").dataNascimento(LocalDate.of(1996, 05, 11)).build());
 			
 			repository.saveAll(c);
-			BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-			usuarioRepository.salvar(Usuario.builder().user("admin").password(bCryptPasswordEncoder.encode("admin")).email("leoeifert@hotmail.com").build());
+
+			usuarioRepository.salvar(Usuario.builder().user("admin").password(passwordEncoder.encode("admin")).email("leoeifert@hotmail.com").build());
 		};
 	}
 

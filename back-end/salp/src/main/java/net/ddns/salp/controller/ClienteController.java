@@ -1,5 +1,6 @@
 package net.ddns.salp.controller;
 
+import lombok.RequiredArgsConstructor;
 import net.ddns.salp.model.entity.Cliente;
 import net.ddns.salp.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +10,12 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/cliente")
 public class ClienteController {
 
-    @Autowired
-    private ClienteService clienteService;
+    private final ClienteService clienteService;
 
     @PostMapping("salvar")
     @ResponseStatus(HttpStatus.CREATED)

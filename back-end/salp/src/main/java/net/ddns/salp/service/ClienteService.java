@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class ClienteService {
 
-    public static final String CLIENTE_NAO_ENCONTRADO = "Cliente não existe no banco de dados";
+    private static final String CLIENTE_NAO_ENCONTRADO = "Cliente não existe no banco de dados";
     private final ClienteRepository repository;
 
     @Autowired
